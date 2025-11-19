@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        :root {
+            --primary: #082b75;    /* Deep blue */
+            --secondary: #8db7e0;  /* Light blue */
+            --accent: #f7b500;     /* Gold button */
+            --accent-hover: #ffcc33;
+            --text-dark: #1b1b1b;
+            --text-light: #ffffff;
+            --background:  #8db7e0ff; /* Light blue background */
+        }
+
+        body {
+            background-color: var(--background);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .profile-card {
+            max-width: 600px;
+            margin: 60px auto;
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-card h2 {
+            text-align: center;
+            color: var(--accent);
+            margin-bottom: 25px;
+            font-size: 26px;
+        }
+
+        .profile-card label {
+            font-weight: bold;
+            color: var(--text-light);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .profile-card input,
+        .profile-card select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border-radius: 10px;
+            border: 1px solid var(--secondary);
+        }
+
+        .profile-card button {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--accent);
+            color: var(--primary);
+            border: none;
+            font-size: 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .profile-card button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            color: var(--accent-hover);
+        }
+
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+            margin: 0 auto 20px auto; /* center horizontally */
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="profile-card">
+
+        <a href={{ url_for('teacher_profile') }} class="back-btn">← Back to Profile</a>
+
+        <h2>Edit Profile</h2>
+        <img src={{ url_for('static', filename='photos/' + (teacher.photo )) }}
+             class="profile-img">
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <label>Upload New Photo:</label>
+            <input type="file" name="photo" accept="image/*">
+
+            <label>Name:</label>
+            <input type="text" name="name" value={{ teacher.name }} required>
+
+            <label>Email:</label>
+            <input type="email" name="email" value={{ teacher.email }} required>
+
+            <label>Password:</label>
+            <input type="text" name="password" value={{ teacher.password }} required>
+
+            <label>Qualifications:</label>
+            <input type="text" name="qualifications" value={{ teacher.qualifications }}>
+
+            <label>Subject:</label>
+            <input type="text" name="subject" value={{ teacher.subject }}>
+
+            <label>Availability:</label>
+            <input type="text" name="availability" value={{ teacher.availability }}>
+
+            <label>Years of Experience:</label>
+            <input type="text" name="years_of_experience" value={{ teacher.years_of_experience }}>
+
+            <label>Contact:</label>
+            <input type="text" name="contact" value={{ teacher.contact }}>
+
+            <label>Place:</label>
+            <input type="text" name="place" value={{ teacher.place }}>
+
+            <button type="submit">Update Profile</button>
+
+        </form>
+    </div>
+</body>
+</html>

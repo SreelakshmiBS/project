@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Attendance</title>
+
+    <style>
+        :root {
+            --primary: #082b75;      /* Dark blue */
+            --secondary: #8db7e0;    /* Light blue */
+            --accent: #f7b500;       /* Gold buttons */
+            --accent-hover: #ffcc33;
+            --text-light: #ffffff;
+            --text-secondary: #d1d1d1;
+            --background: #8db7e0ff; /* Light blue background */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--background);
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            background: var(--primary);
+            padding: 30px;
+            border-radius: 15px;
+            color: var(--text-light);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--accent);
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        th {
+            background: var(--primary);
+            color: var(--accent);
+            padding: 12px;
+            font-size: 18px;
+        }
+
+        td {
+            padding: 12px;
+            text-align: center;
+            background: var(--text-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) td {
+            background: #e7f1fb;
+        }
+
+        .percentage-box {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 12px 20px;
+            font-size: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            width: max-content;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Your Attendance</h2>
+
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+            {% for record in records %}
+            <tr>
+                <td>{{ record.date }}</td>
+                <td>{{ record.status }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div class="percentage-box">
+            Attendance: {{ percentage | round(2) }}%
+        </div>
+
+    </div>
+</body>
+</html>

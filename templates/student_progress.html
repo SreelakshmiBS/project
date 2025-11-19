@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Progress</title>
+    <style>
+        :root {
+            --primary:#082b75;
+            --accent:#f7b500;
+        }
+
+        body { background:#8db7e0; font-family:Poppins; }
+
+        .box {
+            width:60%;
+            margin: 50px auto;
+            background:white;
+            padding:30px;
+            border-radius:15px;
+        }
+
+        .progress-label {
+            margin-top:20px;
+            font-weight:600;
+            color:var(--primary);
+        }
+
+        progress {
+            width:100%;
+            height:20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2 style="text-align:center; color:var(--primary);">Your Progress</h2>
+
+    {% for sub, value in progress.items() %}
+        <p class="progress-label">{{ sub }} — {{ value }}%</p>
+        <progress value="{{ value }}" max="100"></progress>
+    {% endfor %}
+</div>
+
+</body>
+</html>

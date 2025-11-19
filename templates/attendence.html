@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <meta charset="UTF-8">
+  <title>Mark Attendance</title>
+  <style>
+    :root {
+    --primary: #8db7e0ff;       /* White background */
+    --secondary: #082b75ff;     /* Navy blue card */
+    --accent: #f7b500;        /* Yellow button */
+    --accent-hover: #ffcc33;  /* Lighter yellow hover */
+    --text-primary: #1c1c1c;  /* Dark text for contrast */
+    --text-secondary: #555555;
+    --input-bg: #f2f4f7;      /* Light grey input background */
+  }
+    /* Header blue color */
+    .modal-header {
+        background-color: #082b75ff !important;
+        color: white !important;
+        
+    }
+
+    .modal-header .btn-close {
+        filter: brightness(0) invert(1); 
+        justify-content: center;
+    }
+
+    .btn-custom-ok {
+        background-color: #082b75ff !important;
+        border-color: #082b75ff !important;
+        color: white !important;
+        padding: 8px 20px;
+        border-radius: 8px;
+    }
+
+    /* Center OK button */
+    .modal-footer {
+        display: flex;
+        justify-content: center;
+    }
+
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #8db7e0ff;
+      color: #333;
+      margin: 40px;
+    }
+    
+    table {
+      margin: 40px auto;
+      width: 90%;
+      max-width: 1000px;
+      background-color:  #8db3ecff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #082b75ff;
+      color: white;
+    }
+    button {
+      margin-top: 15px;
+      background-color: #082b75ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #082b75ff;
+    }
+  </style>
+</head>
+<body>
+  <center><h2><b>Mark Attendance</h2>
+  <h4>Date: {{ today }}</h4></center>
+  <form method="POST">
+    <table>
+      <tr>
+        <th>Student Name</th>
+        <th>Status</th>
+        <th>Date</th>
+      </tr>
+      {% for student in students %}
+      <tr>
+        <td>{{ student.name }}</td>
+        <td>
+          <select name="status_{{ student.id }}">
+            <option value="Present">Present</option>
+            <option value="Absent">Absent</option>
+          </select>
+        </td>
+        <td>{{ today }}</td>
+        
+      </tr>
+      {% endfor %}
+    </table>
+    <center><button type="submit">Submit Attendance</button></center>
+  </form>
+  <!-- Attendance Success Modal -->
+
+<div class="modal fade" id="attendanceSuccessModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Success</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        Attendance has been marked successfully!
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-custom-ok" data-bs-dismiss="modal">
+          OK
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+{% if success %}
+<script>
+    var successModal = new bootstrap.Modal(document.getElementById('attendanceSuccessModal'));
+    successModal.show();
+</script>
+{% endif %}
+</body>
+</html>

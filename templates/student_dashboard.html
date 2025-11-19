@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+
+    <style>
+        :root {
+            --primary: #8db7e0ff;      /* Light blue background */
+            --secondary: #082b75ff;    /* Dark blue cards & sidebar */
+            --accent: #f7b500;         /* Yellow buttons */
+            --accent-hover: #ffcc33;  
+            --text-primary: #ffffff;   /* White text */
+            --text-secondary: #d1d1d1;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 230px;
+            background-color: var(--secondary);
+            height: 100vh;
+            padding: 25px 15px;
+            color: white;
+            position: fixed;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            color: var(--accent);
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: var(--text-primary);
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background-color: var(--accent);
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* Main Section */
+        .main {
+            margin-left: 260px;
+            padding: 30px;
+            width: 100%;
+        }
+
+        h1 {
+            color: var(--secondary);
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--secondary);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            color: var(--text-primary);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+            transition: 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.45);
+        }
+
+        .card h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--secondary);
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            color: var(--secondary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>STUDENT</h2>
+        <a href="{{ url_for('student_profile')}}" class="active">Profile</a>
+        <a href="{{ url_for('home')}}">Home</a>
+        
+        <a href="#">Chat</a>
+        <a href="#">Classes</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <h1>Welcome, {{ student.name }} !You enrolled to our course {{ student.course.name}}</h1>
+
+        <div class="card-grid">
+            
+            <!-- Profile -->
+            <div class="card">
+                <h2>Profile</h2>
+                <p>View and Edit Your Profile</p>
+                <a href="{{ url_for('student_profile') }}" class="btn">View Profile</a>
+            </div>
+
+            <div class="card">
+                <h2>View Classes</h2>
+                <p>Recorded: {{ recorded_classes|length }} | Live: {{ live_classes|length }}</p>
+                <a href="{{ url_for("student_view_classes")}}" class="btn">View Classes</a>
+                
+                
+            </div>
+             <!-- Attendance -->
+            <div class="card">
+                <h2>Attendance</h2>
+                <p>{{ attendence.percentage }}%</p>
+                <a href="{{ url_for("view_attendance")}}" class='btn'>View attendance</a>
+            </div>
+
+
+            <!-- Assignments -->
+            <!--<div class="card">
+                <h2>Assignments</h2>
+                <p>{{ assignments|length }} Assignments Pending</p>
+                <button class="btn">View Assignments</button>
+            </div>
+
+            <!-- Exams -->
+            <!--<div class="card">
+                <h2>Exams</h2>
+                <p>Upcoming Exams: {{ exams|length }}</p>
+                <button class="btn">View Exams</button>
+            </div>
+        
+            <!-- Chat -->
+            <!--<div class="card">
+                <h2>Chat</h2>
+                <p>Chat with Teachers</p>
+                <button class="btn">Open Chat</button>
+            </div>
+
+            <!-- Classes -->
+            <!--<div class="card">
+                <h2>Uploaded Classes</h2>
+                <p>Total Videos: {{ classes|length }}</p>
+                <button class="btn">Watch Classes</button>
+            </div>-->
+
+        </div>
+    </div>
+
+</body>
+</html>

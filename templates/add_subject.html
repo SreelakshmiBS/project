@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Subject</title>
+</head>
+<body>
+
+    <h2>Add New Subject</h2>
+
+    <form method="POST">
+        <label>Subject Name:</label>
+        <label>Description:</label>
+        <input type="text" name="subject" placeholder="Enter subject name" required><br><br>
+        <input type="text" name="description" placeholder="Enter subject description" required>
+        
+        <button type="submit">Add Subject</button>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <p class="{{ category }}">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+</body>
+</html>

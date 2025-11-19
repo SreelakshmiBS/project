@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Study Material</title>
+
+    <style>
+        :root {
+            --primary: #082b75;
+            --secondary: #8db7e0;
+            --accent: #f7b500;
+            --accent-hover: #ffcc33;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--secondary);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .info {
+            margin-top: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+            background: var(--accent);
+            text-align: center;
+            color: #000;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>{{ material.title }}</h2>
+
+        <div class="info">
+            <strong>Description:</strong><br>
+            {{ material.description }}
+        </div>
+
+        <div class="info">
+            <strong>Uploaded File:</strong><br>
+            {{ material.file_name }}
+        </div>
+
+        <a href={{ url_for('static', filename='uploads/materials/' + material.file_name) }} 
+           target="_blank" class="btn">
+            View Material
+        </a>
+    </div>
+
+</body>
+</html>

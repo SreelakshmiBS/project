@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Our Courses</title>
+<style>
+    :root {
+        --primary: #082b75;
+        --secondary: #8db7e0;
+        --accent: #f7b500;
+        --text-light: #ffffff;
+    }
+
+    body {
+        background: var(--secondary);
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .box {
+        margin: 40px auto;
+        width: 90%;
+        max-width: 1000px;
+        background-color:  #8db3ecff;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th {
+        background: var(--primary);
+        color: white;
+        padding: 12px;
+    }
+
+    td {
+        padding: 12px;
+        text-align: center;
+    }
+
+    .btn {
+        padding: 7px 15px;
+        background: var(--primary);
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+    }
+
+    .btn:hover { background: var(--accent); }
+</style>
+
+</head>
+<body>
+
+<div class="box">
+    <h2 style="text-align:center; color:var(--primary);">Our Courses</h2>
+
+    <table border="1">
+        <tr>
+            <th>Course</th>
+            <th>Description</th>
+            <th>enroll Now </th>
+        </tr>
+
+        {% for c in courses %}
+        <tr>
+            <td>{{ c.name }}</td>
+            <td>{{ c.description }}</td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>

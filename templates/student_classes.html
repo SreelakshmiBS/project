@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Classes</title>
+    <style>
+    /* Your same style */
+    :root {
+        --primary: #082b75;
+        --secondary: #8db7e0;
+        --accent: #f7b500;
+        --accent-hover: #ffcc33;
+        --text-light: #ffffff;
+        --background: #8db7e0ff;
+    }
+    body {
+        background-color: var(--background);
+        font-family: 'Poppins', sans-serif;
+    }
+    h2 {
+        text-align: center;
+        color: var(--primary);
+        margin-top: 30px;
+    }
+    table {
+        width: 90%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background: #8db3ecff;
+        color: white;
+    }
+    th, td {
+        padding: 15px;
+        text-align: center;
+    }
+    th {
+        background: var(--primary);
+    }
+    tr:hover {
+        background: var(--accent);
+        color: var(--primary);
+    }
+    .btn {
+        padding: 8px 14px;
+        background: var(--primary);
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+    }
+    .btn:hover {
+        background: var(--accent);
+        color: var(--primary);
+    }
+    </style>
+</head>
+
+<body>
+
+<h2>Recorded Classes</h2>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Course</th>
+        <th>Watch</th>
+    </tr>
+    {% for cls in recorded_classes %}
+    <tr>
+        <td>{{ cls.title }}</td>
+        <td>{{ cls.date.strftime('%Y-%m-%d') }}</td>
+        <td>{{ cls.course.name }}</td>
+        <td>
+            <a href="{{ url_for('static', filename='uploads/videos/' + cls.filename) }}"
+               target="_blank" class="btn">Watch</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Live Classes</h2>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Course</th>
+        <th>Join</th>
+    </tr>
+    {% for cls in live_classes %}
+    <tr>
+        <td>{{ cls.title }}</td>
+        <td>{{ cls.date.strftime('%Y-%m-%d') }}</td>
+        <td>{{ cls.time.strftime('%H:%M') }}</td>
+        <td>{{ cls.course.name }}</td>
+        <td>
+            <a href="{{ cls.link }}" target="_blank" class="btn">Join</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

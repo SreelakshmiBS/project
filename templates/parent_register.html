@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <style>
+        :root {
+            --primary: #082b75;      /* Dark Blue */
+            --secondary: #8db7e0;    /* Light Blue */
+            --accent: #f7b500;       /* Gold */
+            --accent-hover: #ffcc33; /* Bright Gold Hover */
+            --background: #a6c7f0;   /* Page Light Blue */
+            --white: #ffffff;
+        }
+
+        body {
+            background-color: var(--background);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .profile-container {
+            max-width: 600px;
+            margin: 80px auto;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            padding: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--accent);
+            font-size: 26px;
+            margin-bottom: 25px;
+        }
+
+        p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 8px;
+        }
+
+        p strong {
+            color: var(--accent);
+        }
+
+        .btn {
+            display: block;
+            width: fit-content;
+            margin: 30px auto 0;
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            color: var(--accent-hover);
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h2>{{ student.name }}'s Profile</h2>
+        <p><strong>Student Name:</strong> {{ student.name }}</p>
+        <p><strong>Email:</strong> {{ student.email }}</p>
+        <p><strong>Age:</strong> {{ student.age }}</p>
+        <p><strong>Class:</strong> {{ student.grade }}</p>
+        <p><strong>Parent Name:</strong> {{ student.parent_name }}</p>
+        <p><strong>Course:</strong> {{ student.course }}</p>
+
+        <a href="{{ url_for('student_dashboard') }}" class="btn">← Back to Dashboard</a>
+    </div>
+</body>
+</html>
